@@ -1,4 +1,4 @@
-package cn.bean;
+package cn.bean.dataStructure;
 
 public class Node {
 	//Node中维护的数据

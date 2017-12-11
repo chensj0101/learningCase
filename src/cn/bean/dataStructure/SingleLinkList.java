@@ -1,4 +1,4 @@
-package cn.bean;
+package cn.bean.dataStructure;
 
 public class SingleLinkList<T> {
 	//链表中第一个节点

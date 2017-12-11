@@ -1,6 +1,11 @@
-package cn.bean;
+package cn.bean.demo;
 
 import org.junit.Test;
+
+import cn.bean.dataStructure.Array;
+import cn.bean.dataStructure.DoubleLinkList;
+import cn.bean.dataStructure.SimpleArrayList;
+import cn.bean.dataStructure.SingleLinkList;
 
 public class Demo {
     @Test

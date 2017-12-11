@@ -1,4 +1,4 @@
-package cn.bean;
+package cn.bean.dataStructure;
 
 public class DoubleLinkList<T> extends SingleLinkList<T> {
 	//链表中的最后一个节点

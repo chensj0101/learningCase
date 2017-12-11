@@ -1,4 +1,4 @@
-package cn.bean;
+package cn.bean.dataStructure;
 
 public class Array<V> {
     private Object[] elements;

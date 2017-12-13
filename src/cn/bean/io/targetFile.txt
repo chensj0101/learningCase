@@ -1,0 +1,4 @@
+name=sj
+Weight=70
+long=212
+Height=175

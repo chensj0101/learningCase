@@ -60,14 +60,14 @@ public class ReadFromFile {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-//		finally {
-//            if (inputStream != null) {
-//                try {
-//                	inputStream.close();
-//                } catch (IOException e1) {
-//                }
-//            }
-//        }
+		finally {
+            if (inputStream != null) {
+                try {
+                	inputStream.close();
+                } catch (IOException e1) {
+                }
+            }
+        }
 	}
 /*
 * 以字符为单位读取文件，常用于读取文本，数字等类型的文件

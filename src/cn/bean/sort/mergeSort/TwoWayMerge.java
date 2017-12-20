@@ -1,7 +1,151 @@
-package cn.bean.sort;
+package cn.bean.sort.mergeSort;
 
-public class MergeSort {
-	
+import java.util.Arrays;
+
+import org.junit.Test;
+
+public class TwoWayMerge {
+	/** 将两个有序数组(排序顺序相同)合并成大的有序数组，合成后的顺序与两个数组的顺序相同；
+	 * @param firstArray 第一个数组
+	 * @param nextArray 第二个数组
+	 * @param asc 两个数组原来的排列顺序，true为升序，false为降序
+	 * @return 返回结果数组
+	 */
+	public static int[] merge(int[] firstArray, int[] nextArray, boolean asc) {
+		int[] resultArray = new int[firstArray.length + nextArray.length];
+		int firstArrayIndex = 0, nextArrayIndex = 0, resultArrayIndex = 0;
+		if(asc) {
+		    while((firstArrayIndex < firstArray.length) && (nextArrayIndex < nextArray.length)) {
+			    if(firstArray[firstArrayIndex] < nextArray[nextArrayIndex]) {
+					resultArray[resultArrayIndex++] = firstArray[firstArrayIndex++];
+				}else {
+					resultArray[resultArrayIndex++] = nextArray[nextArrayIndex++];
+				}
+			}
+		    while(firstArrayIndex < firstArray.length) {
+		    	resultArray[resultArrayIndex++] = firstArray[firstArrayIndex++];
+		    }
+		    while(nextArrayIndex < nextArray.length) {
+		        resultArray[resultArrayIndex++] = nextArray[nextArrayIndex++];
+		    }
+		}else {
+				while((firstArrayIndex < firstArray.length) && (nextArrayIndex < nextArray.length)) {
+			        if (firstArray[firstArrayIndex] < nextArray[nextArrayIndex]) {
+						resultArray[resultArrayIndex++] = nextArray[nextArrayIndex++];
+					} else {
+                        resultArray[resultArrayIndex++] = firstArray[firstArrayIndex++];
+					}
+				}
+				while(firstArrayIndex < firstArray.length) {
+					resultArray[resultArrayIndex++] = firstArray[firstArrayIndex++];
+				}
+				while(nextArrayIndex < nextArray.length) {
+					resultArray[resultArrayIndex++] = nextArray[nextArrayIndex++];
+				}
+		}
+		return resultArray;
+	}
+	/** 将两个有序数组(排序顺序相同)合并成大的有序数组，合成后的顺序由输入参数order决定；
+	 * @param firstArray 第一个数组
+	 * @param nextArray 第二个数组
+	 * @param asc 两个数组原来的排列顺序，true为升序，false为降序
+	 * @param order 合并后的排列顺序，true为升序，false为降序
+	 * @return 返回结果数组
+	 */
+	public static int[] merge(int[] firstArray, int[] nextArray, boolean asc, boolean order) {
+		int resultArraylength = firstArray.length + nextArray.length;
+		int[] resultArray = new int[resultArraylength];
+		int firstArrayIndex = 0, nextArrayIndex = 0, resultArrayIndex = 0; 
+		if(asc) {
+			if(order){
+				while((firstArrayIndex < firstArray.length) && (nextArrayIndex < nextArray.length)) {
+				    if(firstArray[firstArrayIndex] < nextArray[nextArrayIndex]) {
+						resultArray[resultArrayIndex++] = firstArray[firstArrayIndex++];
+					}else {
+						resultArray[resultArrayIndex++] = nextArray[nextArrayIndex++];
+					}
+				}
+			    while(firstArrayIndex < firstArray.length) {
+			    	resultArray[resultArrayIndex++] = firstArray[firstArrayIndex++];
+			    }
+			    while(nextArrayIndex < nextArray.length) {
+			        resultArray[resultArrayIndex++] = nextArray[nextArrayIndex++];
+			    }
+			}else {
+				resultArrayIndex = resultArraylength - 1;
+				while((firstArrayIndex < firstArray.length) && (nextArrayIndex < nextArray.length)) {
+				    if(firstArray[firstArrayIndex] < nextArray[nextArrayIndex]) {
+						resultArray[resultArrayIndex--] = firstArray[firstArrayIndex++];
+					}else {
+						resultArray[resultArrayIndex--] = nextArray[nextArrayIndex++];
+					}
+				}
+			    while(firstArrayIndex < firstArray.length) {
+			    	resultArray[resultArrayIndex--] = firstArray[firstArrayIndex++];
+			    }
+			    while(nextArrayIndex < nextArray.length) {
+			        resultArray[resultArrayIndex--] = nextArray[nextArrayIndex++];
+			    }
+			}
+		    
+		}else {
+			if (order) {
+				resultArrayIndex = resultArraylength - 1;
+				while((firstArrayIndex < firstArray.length) && (nextArrayIndex < nextArray.length)) {
+			        if (firstArray[firstArrayIndex] < nextArray[nextArrayIndex]) {
+						resultArray[resultArrayIndex--] = nextArray[nextArrayIndex++];
+					} else {
+                        resultArray[resultArrayIndex--] = firstArray[firstArrayIndex++];
+					}
+				}
+				while(firstArrayIndex < firstArray.length) {
+					resultArray[resultArrayIndex--] = firstArray[firstArrayIndex++];
+				}
+				while(nextArrayIndex < nextArray.length) {
+					resultArray[resultArrayIndex--] = nextArray[nextArrayIndex++];
+				}
+			} else {
+				while((firstArrayIndex < firstArray.length) && (nextArrayIndex < nextArray.length)) {
+			        if (firstArray[firstArrayIndex] < nextArray[nextArrayIndex]) {
+						resultArray[resultArrayIndex++] = nextArray[nextArrayIndex++];
+					} else {
+                        resultArray[resultArrayIndex++] = firstArray[firstArrayIndex++];
+					}
+				}
+				while(firstArrayIndex < firstArray.length) {
+					resultArray[resultArrayIndex++] = firstArray[firstArrayIndex++];
+				}
+				while(nextArrayIndex < nextArray.length) {
+					resultArray[resultArrayIndex++] = nextArray[nextArrayIndex++];
+				}
+			}
+				
+		}
+		return resultArray;
+	}
+	@Test
+	public void testTwoWayMerge() {
+		int[] first = new int[]{1,3,5,7,9};
+		int[] next = new int[]{2,4,6,8};
+		int[] result = merge(first, next, true);
+		int[] resultToDesc = merge(first, next, true,false);
+		System.out.println("------------两个升序数组------------");
+		System.out.println("数组1：" + Arrays.toString(first));
+		System.out.println("数组2：" + Arrays.toString(next));
+		System.out.println("升序合并后：" + Arrays.toString(result));
+		System.out.println("升序合并成降序：" + Arrays.toString(resultToDesc));
+		
+		int[] firstDesc = new int[]{9,7,6,5,1};
+		int[] nextDesc = new int[]{8,4,3,2,2,1};
+		int[] resultDesc = merge(firstDesc, nextDesc, false);
+		int[] resultEAsc = merge(firstDesc, nextDesc, false, true);
+		System.out.println("------------两个降序数组------------");
+		System.out.println("数组1：" + Arrays.toString(firstDesc));
+		System.out.println("数组2：" + Arrays.toString(nextDesc));
+		System.out.println("降序合并后：" + Arrays.toString(resultDesc));
+		System.out.println("降序合并成升序：" + Arrays.toString(resultEAsc));
+		
+	}
 //  出处：田守枝Java技术博客	
 //	 2.4 归并排序
 //	 2017-01-21 23:01:48 315 0

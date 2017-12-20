@@ -13,7 +13,7 @@ import java.util.Properties;
 import org.junit.Test;
 
 /** 关于properties类常用的操作
- * @author 陈少坚
+ * @author chensj
  * 
  */
 public class TestProperties {

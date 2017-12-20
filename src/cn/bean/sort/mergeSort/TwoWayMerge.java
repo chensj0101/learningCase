@@ -146,6 +146,8 @@ public class TwoWayMerge {
 		System.out.println("降序合并成升序：" + Arrays.toString(resultEAsc));
 		
 	}
+}
+//  归并算法教程
 //  出处：田守枝Java技术博客	
 //	 2.4 归并排序
 //	 2017-01-21 23:01:48 315 0
@@ -291,4 +293,4 @@ public class TwoWayMerge {
 //	 第三个循环：
 //
 //	 用于处理firstArray所有元素已经迭代结束,但是secondArray没有迭代完的情况 ,将secondArray的剩余元素直接拷贝到resultArray中
-}
+
